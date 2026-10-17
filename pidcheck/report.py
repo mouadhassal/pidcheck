@@ -14,7 +14,7 @@ COLOURS = {ERROR: (0.84, 0.11, 0.11), WARNING: (0.93, 0.55, 0.0), INFO: (0.25, 0
 HEX = {ERROR: "#d61c1c", WARNING: "#ec8c00", INFO: "#4073d9"}
 
 
-def annotated_png(rep: Report, out_png: Path, dpi: int = 130) -> Path | None:
+def annotated_png(rep: Report, out_png: Path, dpi: int = 170) -> Path | None:
     """The drawing with every error and warning circled and numbered."""
     marks = [(i, f) for i, f in enumerate(rep.findings, 1) if f.x is not None and f.severity != INFO]
     src = Path(rep.drawing)

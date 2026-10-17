@@ -133,7 +133,14 @@ def render(dxf_path: str | Path, pdf_path: str | Path | None = None, marks: list
     if pdf_path:
         pdf.save(pdf_path)
     if png_path:
-        page.get_pixmap(dpi=dpi).save(png_path)
+        # crop to what is drawn, so the image is the drawing and not an empty A3 page
+        box = fitz.Rect()
+        for d in page.get_drawings():
+            box |= d["rect"]
+        for b in page.get_text("blocks"):
+            box |= fitz.Rect(b[:4])
+        clip = (box + (-18, -18, 18, 18)) & page.rect if not box.is_empty else page.rect
+        page.get_pixmap(dpi=dpi, clip=clip).save(png_path)
     pdf.close()
     return m
 
