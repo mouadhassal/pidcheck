@@ -64,6 +64,9 @@ def _kind_from_header(h: str) -> str:
 
 def read(path: str | Path) -> EquipmentList:
     path = Path(path)
+    if path.suffix.lower() == ".xml":
+        from . import dexpi
+        return dexpi.read(path)
     rows = _rows(path)
     out = EquipmentList()
     hdr_i = next((i for i, r in enumerate(rows[:15]) if any(isinstance(c, str) and re.search(r"\btag\b", c, re.I)

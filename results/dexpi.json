@@ -1,0 +1,620 @@
+[
+ {
+  "kind": "round trip",
+  "pdf": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02-SAG.IM01.pdf",
+  "xml": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02.xml",
+  "importer": "SAG",
+  "tags_in_xml": 13,
+  "tags_on_pdf": 14,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-001",
+    "message": "P-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "P-4712",
+    "message": "P-4712 (CentrifugalPump) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "SV-104.01",
+    "message": "SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-001",
+    "message": "W-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-002",
+    "message": "W-002 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02-SAG.IM02.pdf",
+  "xml": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02.xml",
+  "importer": "SAG",
+  "tags_in_xml": 13,
+  "tags_on_pdf": 15,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-001",
+    "message": "P-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "SV-104.01",
+    "message": "SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-001",
+    "message": "W-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-002",
+    "message": "W-002 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C02 DEXPI Example Complete E+P/C02V01-AVV.EX01-SAG.IM01.pdf",
+  "xml": "tests/C02 DEXPI Example Complete E+P/C02V01-AVV.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 13,
+  "tags_on_pdf": 17,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-004",
+    "message": "P-004 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-005",
+    "message": "P-005 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-005",
+    "message": "W-005 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-006",
+    "message": "W-006 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C02 DEXPI Example Complete E+P/C02V01-ING.EX01-SAG.IM01.pdf",
+  "xml": "tests/C02 DEXPI Example Complete E+P/C02V01-ING.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 6,
+  "tags_on_pdf": 8,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "R-001",
+    "message": "R-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "SV-104.01",
+    "message": "SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-007",
+    "message": "W-007 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-008",
+    "message": "W-008 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-AVV.EX01-SAG.IM01.pdf",
+  "xml": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-AVV.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 9,
+  "tags_on_pdf": 10,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-005",
+    "message": "P-005 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-ING.EX01-SAG.IM01.pdf",
+  "xml": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-ING.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 3,
+  "tags_on_pdf": 3,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "R-001",
+    "message": "R-001 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "SV-104.01",
+    "message": "SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-AVV.EX01-SAG.IM01.pdf",
+  "xml": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-AVV.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 4,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-007",
+    "message": "P-007 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-002",
+    "message": "W-002 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-ING.EX01-SAG.IM01.pdf",
+  "xml": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-ING.EX01.xml",
+  "importer": "SAG",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 3,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-003",
+    "message": "W-003 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-SAG.EX01-SAG.IM01.pdf",
+  "xml": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-SAG.EX01.XML",
+  "importer": "SAG",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 4,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-008",
+    "message": "P-008 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "W-003",
+    "message": "W-003 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "round trip",
+  "pdf": "tests/C05 Pump- Tank- and Control loop/C05V01-SAG.EX01-SAG.IM01.pdf",
+  "xml": "tests/C05 Pump- Tank- and Control loop/C05V01-SAG.EX01.XML",
+  "importer": "SAG",
+  "tags_in_xml": 9,
+  "tags_on_pdf": 7,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "B-003",
+    "message": "B-003 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "P-008",
+    "message": "P-008 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "TA-113",
+    "message": "TA-113 (VesselWithDishedHeadsWithOptionalAgitator) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-001",
+    "message": "V-001 (GlobeValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-002",
+    "message": "V-002 (GlobeValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-003",
+    "message": "V-003 (BallValve) is in the equipment list but not on the drawing"
+   }
+  ]
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02.pdf",
+  "xml": "tests/C01 the complete DEXPI PnID/C01V01-HEX.EX02.xml",
+  "tags_in_xml": 13,
+  "tags_on_pdf": 13,
+  "values_compared": 42,
+  "agreements": 48,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-SAG.EX01.pdf",
+  "xml": "tests/C03 DEXPI Example Tank Displ Pump Pipe with Tee/C03V01-SAG.EX01.XML",
+  "tags_in_xml": 9,
+  "tags_on_pdf": 9,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "DUPLICATE_IN_LIST",
+    "severity": "error",
+    "tag": "V-001",
+    "message": "V-001 is listed twice (rows 0 and 0)"
+   },
+   {
+    "kind": "DUPLICATE_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-001",
+    "message": "V-001 appears 2 times on the drawing"
+   }
+  ]
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-SAG.EX01.pdf",
+  "xml": "tests/C04 DEXPI Example Pump Plate Heat Exchanger/C04V01-SAG.EX01.XML",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/C05 Pump- Tank- and Control loop/C05V01-SAG.EX01.pdf",
+  "xml": "tests/C05 Pump- Tank- and Control loop/C05V01-SAG.EX01.XML",
+  "tags_in_xml": 9,
+  "tags_on_pdf": 6,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-001",
+    "message": "V-001 (GlobeValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-002",
+    "message": "V-002 (GlobeValve) is in the equipment list but not on the drawing"
+   },
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "V-003",
+    "message": "V-003 (BallValve) is in the equipment list but not on the drawing"
+   }
+  ]
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E01 Tank/E01V01-ING.EX01.PDF",
+  "xml": "tests/E01 Tank/E01V01-ING.EX01.xml",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 10,
+  "agreements": 10,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E02 Tank with Nozzles/E02V01-ING.EX01.PDF",
+  "xml": "tests/E02 Tank with Nozzles/E02V01-ING.EX01.xml",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 10,
+  "agreements": 10,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E03 Pump With Nozzles/E03V01-SAG.EX01.pdf",
+  "xml": "tests/E03 Pump With Nozzles/E03V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E04 HeatExchanger With Nozzles/E04V01-SAG.EX01.pdf",
+  "xml": "tests/E04 HeatExchanger With Nozzles/E04V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E05 Pump With Nozzles And HeatExchanger With Nozzles/E05V01-SAG.EX01.pdf",
+  "xml": "tests/E05 Pump With Nozzles And HeatExchanger With Nozzles/E05V01-SAG.EX01.XML",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E06 Pump, HeatExchanger, Nozzles Connected With PNS/E06V01-SAG.EX01.pdf",
+  "xml": "tests/E06 Pump, HeatExchanger, Nozzles Connected With PNS/E06V01-SAG.EX01.XML",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E07 PressureVessel with ColumnSections/E07V01-SAG.EX01.pdf",
+  "xml": "tests/E07 PressureVessel with ColumnSections/E07V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 3,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "S-3211",
+    "message": "S-3211 is on the drawing but not in the equipment list"
+   },
+   {
+    "kind": "NOT_IN_LIST",
+    "severity": "error",
+    "tag": "S-3212",
+    "message": "S-3212 is on the drawing but not in the equipment list"
+   }
+  ]
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E08 ProcessColumn with ColumnSections/E08V01-SAG.EX01.pdf",
+  "xml": "tests/E08 ProcessColumn with ColumnSections/E08V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E11 Heat Exchanger with Chambers and Equipment Bar/E11V01-SAG.EX01.pdf",
+  "xml": "tests/E11 Heat Exchanger with Chambers and Equipment Bar/E11V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E12 Heat Exchanger with Chambers, Nozzles and Equipment Bar/E12V01-SAG.EX01.pdf",
+  "xml": "tests/E12 Heat Exchanger with Chambers, Nozzles and Equipment Bar/E12V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/E13 Tank with Plant Structure Information/E13V01-SAG.EX01.pdf",
+  "xml": "tests/E13 Tank with Plant Structure Information/E13V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I05 Two flow indications and flow ratio control in CCR/I05V01-SAG.EX01.pdf",
+  "xml": "tests/I05 Two flow indications and flow ratio control in CCR/I05V01-SAG.EX01.xml",
+  "tags_in_xml": 5,
+  "tags_on_pdf": 5,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I06 CCR flow indication and high alarm, flow control, control valve/I06V01-SAG.EX01.pdf",
+  "xml": "tests/I06 CCR flow indication and high alarm, flow control, control valve/I06V01-SAG.EX01.xml",
+  "tags_in_xml": 5,
+  "tags_on_pdf": 4,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": [
+   {
+    "kind": "MISSING_ON_DRAWING",
+    "severity": "error",
+    "tag": "M-001",
+    "message": "M-001 (Actuator) is in the equipment list but not on the drawing"
+   }
+  ]
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I07 Local and CCR pressure indic., alarm and safety switch/I07V01-SAG.EX01.pdf",
+  "xml": "tests/I07 Local and CCR pressure indic., alarm and safety switch/I07V01-SAG.EX01.xml",
+  "tags_in_xml": 3,
+  "tags_on_pdf": 3,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I08 Local pressure indication, CCR pressure indication, alarms and switches/I08V01-SAG.EX01.pdf",
+  "xml": "tests/I08 Local pressure indication, CCR pressure indication, alarms and switches/I08V01-SAG.EX01.xml",
+  "tags_in_xml": 4,
+  "tags_on_pdf": 4,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I09 Measurement/I09V01-SAG.EX01.pdf",
+  "xml": "tests/I09 Measurement/I09V01-SAG.EX01.xml",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I10 Measurement/I10V01-SAG.EX01.pdf",
+  "xml": "tests/I10 Measurement/I10V01-SAG.EX01.xml",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I11 Measurement/I11V01-SAG.EX01.pdf",
+  "xml": "tests/I11 Measurement/I11V01-SAG.EX01.xml",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/I12 Control/I12V01-SAG.EX01.pdf",
+  "xml": "tests/I12 Control/I12V01-SAG.EX01.xml",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/P01 Pipe FromTo Nozzles/P01V01-ING.EX01.PDF",
+  "xml": "tests/P01 Pipe FromTo Nozzles/P01V01-ING.EX01.xml",
+  "tags_in_xml": 2,
+  "tags_on_pdf": 2,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/P03 Pipe With Edge/P03V01-SAG.EX01.pdf",
+  "xml": "tests/P03 Pipe With Edge/P03V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ },
+ {
+  "kind": "same tool",
+  "pdf": "tests/P04 Pipe With Intersection/P04V01-SAG.EX01.pdf",
+  "xml": "tests/P04 Pipe With Intersection/P04V01-SAG.EX01.XML",
+  "tags_in_xml": 1,
+  "tags_on_pdf": 1,
+  "values_compared": 0,
+  "agreements": 0,
+  "findings": []
+ }
+]

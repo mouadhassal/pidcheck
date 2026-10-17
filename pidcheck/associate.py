@@ -17,7 +17,7 @@ import math
 from dataclasses import dataclass, field
 
 from .extract import Fragment
-from .tags import DIGITS_ONLY, LETTERS_ONLY, TAG_IN_TEXT, Tag, parse_tag
+from .tags import DIGITS_ONLY, LETTERS_ONLY, Tag, parse_tag, tag_at_start
 from .units import Quantity, parse_quantities
 
 TAG_FIELDS = {"TAG", "TAGNO", "TAG_NO", "TAGNUMBER", "TAG_NUMBER", "ITEM", "NUMBER", "EQUIPMENT_TAG"}
@@ -70,8 +70,8 @@ def _merge_bubbles(frags: list[Fragment]) -> tuple[list[Fragment], set[int]]:
     """Instrument bubbles split the tag in two lines: function letters above, loop number below."""
     used: set[int] = set()
     merged: list[Fragment] = []
-    letters = [(i, f) for i, f in enumerate(frags) if LETTERS_ONLY.match(f.text.strip().upper())]
-    digits = [(i, f) for i, f in enumerate(frags) if DIGITS_ONLY.match(f.text.strip().upper())]
+    letters = [(i, f) for i, f in enumerate(frags) if LETTERS_ONLY.match(f.text.strip())]
+    digits = [(i, f) for i, f in enumerate(frags) if DIGITS_ONLY.match(f.text.strip())]
     for i, a in letters:
         best = None
         for j, b in digits:
@@ -85,10 +85,16 @@ def _merge_bubbles(frags: list[Fragment]) -> tuple[list[Fragment], set[int]]:
             j = best[0]
             b = frags[j]
             used |= {i, j}
-            merged.append(Fragment(f"{a.text.strip().upper()}-{b.text.strip().upper()}", (a.x + b.x) / 2,
+            merged.append(Fragment(f"{a.text.strip()}-{b.text.strip()}", (a.x + b.x) / 2,
                                    (a.y + b.y) / 2, max(a.height, b.height), a.source + "+bubble",
                                    page=a.page, extra={"parts": (a, b)}))
     return merged, used
+
+
+def _is_line_label(rest: str) -> bool:
+    """The text after a would-be tag is a piping class code like 75HB13 / A1A, with no quantity in it."""
+    import re
+    return bool(re.search(r"\b\d{1,3}[A-Z]{1,3}\d{0,3}\b", rest)) and not parse_quantities(rest)
 
 
 def build(frags: list[Fragment]) -> Drawing:
@@ -126,14 +132,15 @@ def build(frags: list[Fragment]) -> Drawing:
         if tag:
             d.occurrences.append(Occurrence(tag, f.x, f.y, f.height, f))
             continue
-        m = TAG_IN_TEXT.match(text.upper())
-        if m:
-            tag = parse_tag(m.group(0))
-            if tag:
-                d.occurrences.append(Occurrence(tag, f.x, f.y, f.height, f))
-                for q in parse_quantities(text[m.end():]):
-                    d.specs.setdefault(tag.canonical, []).append(SpecLink(q, f, "inline"))
-                continue
+        hit = tag_at_start(text)
+        if hit and _is_line_label(text[hit[1]:]):
+            continue          # "M 48122 75HB 80": a pipe line designation (fluid, number, class, size)
+        if hit:
+            tag, end = hit
+            d.occurrences.append(Occurrence(tag, f.x, f.y, f.height, f))
+            for q in parse_quantities(text[end:]):
+                d.specs.setdefault(tag.canonical, []).append(SpecLink(q, f, "inline"))
+            continue
         qs = parse_quantities(text)
         if qs:
             loose_specs.append((f, qs))

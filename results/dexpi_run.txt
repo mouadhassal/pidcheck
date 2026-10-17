@@ -1,0 +1,78 @@
+round trip C01V01-HEX.EX02-SAG.IM01.pdf             tags xml/pdf  13/14  values   0 agree   0  errors/warnings 5
+           error   P-001 is on the drawing but not in the equipment list
+           error   P-4712 (CentrifugalPump) is in the equipment list but not on the drawing
+           error   SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing
+           error   W-001 is on the drawing but not in the equipment list
+           error   W-002 is on the drawing but not in the equipment list
+round trip C01V01-HEX.EX02-SAG.IM02.pdf             tags xml/pdf  13/15  values   0 agree   0  errors/warnings 4
+           error   P-001 is on the drawing but not in the equipment list
+           error   SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing
+           error   W-001 is on the drawing but not in the equipment list
+           error   W-002 is on the drawing but not in the equipment list
+round trip C02V01-AVV.EX01-SAG.IM01.pdf             tags xml/pdf  13/17  values   0 agree   0  errors/warnings 6
+           error   H-1007 appears 2 times on the drawing
+           error   P-004 is on the drawing but not in the equipment list
+           error   P-005 is on the drawing but not in the equipment list
+           error   P-4711 appears 2 times on the drawing
+           error   W-005 is on the drawing but not in the equipment list
+           error   W-006 is on the drawing but not in the equipment list
+round trip C02V01-ING.EX01-SAG.IM01.pdf             tags xml/pdf   6/8   values   0 agree   0  errors/warnings 4
+           error   R-001 is on the drawing but not in the equipment list
+           error   SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing
+           error   W-007 is on the drawing but not in the equipment list
+           error   W-008 is on the drawing but not in the equipment list
+round trip C03V01-AVV.EX01-SAG.IM01.pdf             tags xml/pdf   9/10  values   0 agree   0  errors/warnings 2
+           error   P-005 is on the drawing but not in the equipment list
+           error   P-4711 appears 2 times on the drawing
+round trip C03V01-ING.EX01-SAG.IM01.pdf             tags xml/pdf   3/3   values   0 agree   0  errors/warnings 2
+           error   R-001 is on the drawing but not in the equipment list
+           error   SV-104.01 (SpringLoadedAngleGlobeSafetyValve) is in the equipment list but not on the drawing
+round trip C04V01-AVV.EX01-SAG.IM01.pdf             tags xml/pdf   2/4   values   0 agree   0  errors/warnings 2
+           error   P-007 is on the drawing but not in the equipment list
+           error   W-002 is on the drawing but not in the equipment list
+round trip C04V01-ING.EX01-SAG.IM01.pdf             tags xml/pdf   2/3   values   0 agree   0  errors/warnings 1
+           error   W-003 is on the drawing but not in the equipment list
+round trip C04V01-SAG.EX01-SAG.IM01.pdf             tags xml/pdf   2/4   values   0 agree   0  errors/warnings 2
+           error   P-008 is on the drawing but not in the equipment list
+           error   W-003 is on the drawing but not in the equipment list
+round trip C05V01-SAG.EX01-SAG.IM01.pdf             tags xml/pdf   9/7   values   0 agree   0  errors/warnings 6
+           error   B-003 is on the drawing but not in the equipment list
+           error   P-008 is on the drawing but not in the equipment list
+           error   TA-113 (VesselWithDishedHeadsWithOptionalAgitator) is in the equipment list but not on the drawing
+           error   V-001 (GlobeValve) is in the equipment list but not on the drawing
+           error   V-002 (GlobeValve) is in the equipment list but not on the drawing
+           error   V-003 (BallValve) is in the equipment list but not on the drawing
+same tool  C01V01-HEX.EX02.pdf                      tags xml/pdf  13/13  values  42 agree  48  errors/warnings 0
+same tool  C03V01-SAG.EX01.pdf                      tags xml/pdf   9/9   values   0 agree   0  errors/warnings 2
+           error   V-001 is listed twice (rows 0 and 0)
+           error   V-001 appears 2 times on the drawing
+same tool  C04V01-SAG.EX01.pdf                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  C05V01-SAG.EX01.pdf                      tags xml/pdf   9/6   values   0 agree   0  errors/warnings 3
+           error   V-001 (GlobeValve) is in the equipment list but not on the drawing
+           error   V-002 (GlobeValve) is in the equipment list but not on the drawing
+           error   V-003 (BallValve) is in the equipment list but not on the drawing
+same tool  E01V01-ING.EX01.PDF                      tags xml/pdf   1/1   values  10 agree  10  errors/warnings 0
+same tool  E02V01-ING.EX01.PDF                      tags xml/pdf   1/1   values  10 agree  10  errors/warnings 0
+same tool  E03V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  E04V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  E05V01-SAG.EX01.pdf                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  E06V01-SAG.EX01.pdf                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  E07V01-SAG.EX01.pdf                      tags xml/pdf   1/3   values   0 agree   0  errors/warnings 2
+           error   S-3211 is on the drawing but not in the equipment list
+           error   S-3212 is on the drawing but not in the equipment list
+same tool  E08V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  E11V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  E12V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  E13V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  I05V01-SAG.EX01.pdf                      tags xml/pdf   5/5   values   0 agree   0  errors/warnings 0
+same tool  I06V01-SAG.EX01.pdf                      tags xml/pdf   5/4   values   0 agree   0  errors/warnings 1
+           error   M-001 (Actuator) is in the equipment list but not on the drawing
+same tool  I07V01-SAG.EX01.pdf                      tags xml/pdf   3/3   values   0 agree   0  errors/warnings 0
+same tool  I08V01-SAG.EX01.pdf                      tags xml/pdf   4/4   values   0 agree   0  errors/warnings 0
+same tool  I09V01-SAG.EX01.pdf                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  I10V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  I11V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  I12V01-SAG.EX01.pdf                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  P01V01-ING.EX01.PDF                      tags xml/pdf   2/2   values   0 agree   0  errors/warnings 0
+same tool  P03V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0
+same tool  P04V01-SAG.EX01.pdf                      tags xml/pdf   1/1   values   0 agree   0  errors/warnings 0

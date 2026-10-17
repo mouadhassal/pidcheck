@@ -18,10 +18,11 @@ from fractions import Fraction
 _GAL = 3.785411784e-3  # US gallon in m3
 LINEAR = {
     "flow": {"gpm": _GAL / 60, "usgpm": _GAL / 60, "gal/min": _GAL / 60, "m3/h": 1 / 3600, "m³/h": 1 / 3600,
-             "m3/hr": 1 / 3600, "m³/hr": 1 / 3600, "l/s": 1e-3, "l/min": 1e-3 / 60, "m3/s": 1.0, "m³/s": 1.0},
-    "volume": {"gal": _GAL, "usgal": _GAL, "gallons": _GAL, "m3": 1.0, "m³": 1.0, "l": 1e-3, "litres": 1e-3,
-               "liters": 1e-3},
-    "area": {"ft2": 0.09290304, "ft²": 0.09290304, "sqft": 0.09290304, "m2": 1.0, "m²": 1.0},
+             "m3/hr": 1 / 3600, "m³/hr": 1 / 3600, "m^3/h": 1 / 3600, "m^3/hr": 1 / 3600, "l/s": 1e-3,
+             "l/min": 1e-3 / 60, "m3/s": 1.0, "m³/s": 1.0},
+    "volume": {"gal": _GAL, "usgal": _GAL, "gallons": _GAL, "m3": 1.0, "m³": 1.0, "m^3": 1.0, "l": 1e-3,
+               "litres": 1e-3, "liters": 1e-3},
+    "area": {"ft2": 0.09290304, "ft²": 0.09290304, "sqft": 0.09290304, "m2": 1.0, "m²": 1.0, "m^2": 1.0},
     "power": {"kw": 1e3, "hp": 745.69987158227, "w": 1.0, "mw": 1e6},
 }
 # pressure: (factor to Pa, reference) with reference "g" gauge, "a" absolute, "" unspecified
@@ -90,10 +91,12 @@ def _fraction(s: str) -> Fraction | None:
 
 _RATING = re.compile(r"(?:\b(?:CLASS|CL\.?|ANSI|ASME)\s*(?P<a>\d{3,4})\b|\b(?P<b>\d{3,4})\s*(?:#|LB\b|LBS\b))", re.I)
 _PN = re.compile(r"\bPN\s*(?P<pn>\d{1,3})\b", re.I)
-_DN = re.compile(r"\bDN\s*(?P<dn>\d{2,4})\b", re.I)
+_DN = re.compile(r"\bDN\s*=?\s*(?P<dn>\d{2,4})\b", re.I)
 _NPS = re.compile(r"(?:\bNPS\s*(?P<a>\d+(?:[ -]\d/\d)?|\d/\d)|(?P<b>\d+(?:[ -]\d/\d)?|\d/\d|\d+\.\d+)\s*(?:\"|”|''|IN\b|INCH\b))", re.I)
-_TEMP = re.compile(r"(?P<tnum>-?\d+(?:[.,]\d+)?)\s*(?P<u>°\s?[CF]|º\s?[CF]|DEG\s?[CF]|K)\b", re.I)
-_GEN = re.compile(_NUM + r"\s*(?P<u>[A-Za-z°º][A-Za-z0-9°º³²()]*(?:/[A-Za-z0-9³²]+)?)")
+# a bare "C"/"F" after a number ("100.00 C", as some CAD exporters write it) also counts as a temperature
+_TEMP = re.compile(r"(?P<tnum>-?\d+(?:[.,]\d+)?)\s*(?P<u>°\s?[CF]|º\s?[CF]|DEG\s?[CF]|K\b|[CF](?=\s|$|[,;)]))", re.I)
+# an optional minus sign that is not part of a range like "0-200": design pressures can be "-1.0 barg"
+_GEN = re.compile(r"(?P<sign>(?<![\w.])-)?" + _NUM + r"\s*(?P<u>[A-Za-z°º][A-Za-z0-9°º³²^()]*(?:/[A-Za-z0-9³²]+)?)")
 
 
 def parse_quantities(text: str) -> list[Quantity]:
@@ -144,6 +147,8 @@ def parse_quantities(text: str) -> list[Quantity]:
         u = m.group("u").lower().replace(" ", "")
         q = None
         v, h = parse_number(m.group("num"))
+        if m.group("sign"):
+            v = -v
         for kind, table in LINEAR.items():
             if u in table:
                 q = Quantity(kind, v * table[u], h * table[u], m.group(0).strip())
@@ -189,7 +194,14 @@ def compare(a: Quantity, b: Quantity) -> Comparison:
                               "no standard equivalent; compared as written")
         eq = a.si == b.si
         name = "DN" if a.kind == "size" else "Class"
-        return Comparison(eq, f"{a.text} = {name} {int(a.si)}, {b.text} = {name} {int(b.si)}")
+
+        def canon(q):
+            c = f"{name} {int(q.si)}"
+            return q.text if q.text.replace(" ", "").upper() == c.replace(" ", "").upper() else f"{q.text} = {c}"
+        if eq:
+            return Comparison(True, f"{canon(a)}, {canon(b)}" if a.text != b.text else "same designation")
+        return Comparison(False, f"nominal {name} {int(a.si)} vs {name} {int(b.si)}"
+                          if (canon(a), canon(b)) != (a.text, b.text) else "different nominal designations")
     av, bv, assumption = a.si, b.si, ""
     if a.kind == "pressure":
         ra, rb = a.ref, b.ref
@@ -201,6 +213,8 @@ def compare(a: Quantity, b: Quantity) -> Comparison:
             bv = bv + ATM if rb == "g" else bv
     tol = a.half_step + b.half_step + 1e-9 * max(abs(av), abs(bv))
     diff = abs(av - bv)
+    if a.kind == "temperature":
+        return Comparison(diff <= tol, f"{diff:.1f} °C apart; rounding allows {tol:.1f} °C", assumption)
     rel = diff / max(abs(bv), 1e-12)
-    return Comparison(diff <= tol, f"difference {rel:.1%} (rounding allows {tol / max(abs(bv), 1e-12):.2%})",
+    return Comparison(diff <= tol, f"{rel:.1%} apart; rounding allows {tol / max(abs(bv), 1e-12):.2%}",
                       assumption)

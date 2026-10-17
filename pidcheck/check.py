@@ -11,10 +11,13 @@ from dataclasses import field as dfield
 from pathlib import Path
 
 from . import associate, equiplist, extract
-from .tags import likely_same, written_differently
+from .tags import house_style, likely_same, written_differently
 from .units import Quantity, compare
 
 ERROR, WARNING, INFO = "error", "warning", "info"
+# header cells of equipment data tables; a tag on the same row as one of these is a table copy
+TABLE_HEADERS = {"ident", "tag", "tag no", "tag no.", "item", "item no", "item no.", "name", "equipment",
+                 "equipment no", "pos", "pos.", "position"}
 HIGH, MEDIUM, LOW = "high", "medium", "low"
 
 
@@ -78,6 +81,7 @@ def check(drawing_path: str | Path, list_path: str | Path) -> Report:
     listed = lst.items
 
     # --- tags written in a non-standard way, or with a confusable character -------------------
+    style = house_style([o.tag for o in dwg.occurrences if "+bubble" not in o.fragment.source])
     for tag, occ in on_dwg.items():
         for o in occ:
             if o.tag.typo_fixed:
@@ -85,16 +89,33 @@ def check(drawing_path: str | Path, list_path: str | Path) -> Report:
                           f"'{o.tag.written}' uses a letter where a digit belongs; read as {tag}",
                           drawing=o.tag.written, x=o.x, y=o.y, page=o.fragment.page,
                           evidence=["letters O/I/l inside the loop number"]))
-            elif written_differently(o.tag):
+            elif "+bubble" not in o.fragment.source and written_differently(o.tag, style):
                 F(Finding("TAG_FORMAT", INFO, HIGH, tag, f"written '{o.tag.written}', list uses {tag}",
                           drawing=o.tag.written, x=o.x, y=o.y, page=o.fragment.page))
 
     # --- the same tag drawn more than once -----------------------------------------------------
+    # v3: copies overlaid on the same spot are one label (some exporters draw text twice), and a copy on
+    # the same row as a table header ("Ident", "Name") is the item's data table, a drawing convention.
+    headers = [f for f in frags if f.text.strip().lower().rstrip(":") in TABLE_HEADERS]
+
+    def in_table(o) -> bool:
+        return any(hd.page == o.fragment.page and abs(hd.y - o.y) < 0.5 * max(o.height, hd.height)
+                   and abs(hd.x - o.x) < 40 * max(o.height, hd.height) for hd in headers)
+
     for tag, occ in on_dwg.items():
-        if len(occ) > 1:
-            F(Finding("DUPLICATE_ON_DRAWING", ERROR, MEDIUM, tag, f"{tag} appears {len(occ)} times on the drawing",
-                      x=occ[1].x, y=occ[1].y, page=occ[1].fragment.page,
-                      evidence=[f"at ({o.x:.0f}, {o.y:.0f})" for o in occ]))
+        distinct = []
+        for o in occ:
+            if all(abs(o.x - d.x) > o.height or abs(o.y - d.y) > o.height or o.fragment.page != d.fragment.page
+                   for d in distinct):
+                distinct.append(o)
+        on_sheet = [o for o in distinct if not in_table(o)]
+        if len(on_sheet) > 1:
+            F(Finding("DUPLICATE_ON_DRAWING", ERROR, MEDIUM, tag, f"{tag} appears {len(on_sheet)} times on the "
+                      f"drawing", x=on_sheet[1].x, y=on_sheet[1].y, page=on_sheet[1].fragment.page,
+                      evidence=[f"at ({o.x:.0f}, {o.y:.0f})" for o in on_sheet]))
+        elif len(distinct) > len(on_sheet):
+            F(Finding("TAG_IN_TABLE", INFO, HIGH, tag, f"{tag} is repeated in a data table on the sheet",
+                      evidence=[f"table copy at ({o.x:.0f}, {o.y:.0f})" for o in distinct if in_table(o)]))
     for tag, r1, r2 in lst.duplicates:
         F(Finding("DUPLICATE_IN_LIST", ERROR, HIGH, tag, f"{tag} is listed twice (rows {r1} and {r2})"))
 
@@ -220,12 +241,13 @@ def check(drawing_path: str | Path, list_path: str | Path) -> Report:
                 if c.assumption:
                     conf = _lower(conf)
                 F(Finding("SPEC_MISMATCH", ERROR, conf, tag,
-                          f"{tag} {kind}: drawing says {s.quantity.text}, list says {lq.text} ({c.detail})",
+                          f"{tag} {kind}: drawing says {s.quantity.text}, list says {lq.text}. {c.detail[0].upper() + c.detail[1:]}",
                           field=kind, drawing=s.quantity.text, listed=lq.text,
                           x=s.fragment.x, y=s.fragment.y, page=s.fragment.page,
                           evidence=[why] + ([c.assumption] if c.assumption else [])))
-            # one tag showing two different values for the same field
-            if len(shown) > 1:
+            # one tag showing two different values for a field the list holds only once
+            # (v3: max/min or per-chamber design values are legitimately several)
+            if len(shown) > 1 and len(lqs) == 1:
                 vals = {s.quantity.text for s in shown}
                 if any(not compare(a.quantity, b.quantity).equal for a in shown for b in shown):
                     F(Finding("INCONSISTENT_ON_DRAWING", WARNING, MEDIUM, tag,
