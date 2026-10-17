@@ -6,6 +6,10 @@ Links, from most to least certain:
   proximity  - the spec is a separate label; it belongs to the nearest tag, but only when that tag is
                clearly nearer than the next one. When two tags are about equally close the label is
                marked ambiguous instead of guessed: a wrong confident link is worse than an open question.
+
+v2 (amendment, see PREREGISTRATION.md): each proximity link also keeps the other tags within 2.5x the
+nearest distance, so check.py can move a label whose nearest tag cannot carry that field (a pipe size
+next to a vessel) to the nearby tag that can.
 """
 from __future__ import annotations
 
@@ -19,6 +23,7 @@ from .units import Quantity, parse_quantities
 TAG_FIELDS = {"TAG", "TAGNO", "TAG_NO", "TAGNUMBER", "TAG_NUMBER", "ITEM", "NUMBER", "EQUIPMENT_TAG"}
 AMBIGUITY_RATIO = 1.6   # nearest tag must be this much closer than the second-nearest
 MAX_DISTANCE = 9.0      # in text heights; farther labels are not linked to any tag
+FIELD_RATIO = 2.5       # v2: tags this much farther than the nearest stay candidates for field-aware relinking
 
 
 @dataclass
@@ -37,6 +42,7 @@ class SpecLink:
     link: str                       # attribute | inline | proximity | resolved-by-value
     distance: float = 0.0           # in text heights, for proximity links
     margin: float = math.inf        # second-nearest / nearest distance
+    candidates: list = field(default_factory=list)   # nearby tags, nearest first: [(tag, distance)]
 
 
 @dataclass
@@ -155,6 +161,7 @@ def build(frags: list[Fragment]) -> Drawing:
             d.ambiguous.append(Ambiguous(f, qs, [(t, round(v, 2)) for v, t in ranked[:3]
                                                  if v < nearest[0] * AMBIGUITY_RATIO]))
             continue
+        near = [(t, round(v, 2)) for v, t in ranked if v <= nearest[0] * FIELD_RATIO]
         for q in qs:
-            d.specs.setdefault(nearest[1], []).append(SpecLink(q, f, "proximity", nearest[0], margin))
+            d.specs.setdefault(nearest[1], []).append(SpecLink(q, f, "proximity", nearest[0], margin, near))
     return d

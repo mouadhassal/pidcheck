@@ -59,6 +59,9 @@ def _link_confidence(s: associate.SpecLink) -> tuple[str, str]:
         return HIGH, f"{s.link} link"
     if s.link == "resolved-by-value":
         return MEDIUM, "label was between two tags; linked to the one whose list value it matches"
+    if s.link == "relinked-by-field":
+        return MEDIUM, ("label was nearest to a tag that has no such field in the list; moved to the nearby "
+                        "tag that has it")
     if s.distance <= 4.0 and s.margin >= 2.5:
         return HIGH, f"label {s.distance:.1f} text heights from the tag, next tag {s.margin:.1f}x farther"
     return MEDIUM, f"label {s.distance:.1f} text heights from the tag, next tag only {s.margin:.1f}x farther"
@@ -150,6 +153,37 @@ def check(drawing_path: str | Path, list_path: str | Path) -> Report:
                       f"list value ({listed_vals}). Could be a wrong value on either; needs a human look",
                       drawing=amb.fragment.text, x=amb.fragment.x, y=amb.fragment.y, page=amb.fragment.page,
                       related=cands[1:], evidence=[f"{t} at {dist} text heights" for t, dist in amb.candidates]))
+    # --- v2: field-aware relinking. A label nearest to a tag whose list entry has no such field
+    # (a pipe size beside a vessel) most likely belongs to a nearby tag that does have it.
+    for tag in list(dwg.specs):
+        if tag not in listed:
+            continue
+        keep = []
+        for s in dwg.specs[tag]:
+            q = s.quantity
+            if s.link != "proximity" or q.kind in listed[tag].specs:
+                keep.append(s)
+                continue
+            alts = [(t, dist) for t, dist in s.candidates if t != tag and t in listed and q.kind in listed[t].specs]
+            if not alts:
+                keep.append(s)
+                F(Finding("SPEC_UNEXPECTED", INFO, MEDIUM, tag, f"'{s.fragment.text}' is nearest to {tag}, which "
+                          f"has no {q.kind} in the list, and no nearby tag has one", field=q.kind,
+                          drawing=s.fragment.text, x=s.fragment.x, y=s.fragment.y, page=s.fragment.page))
+                continue
+            fits = [t for t, _ in alts if any(compare(q, lq).equal for lq in listed[t].specs[q.kind])]
+            target = fits[0] if fits else (alts[0][0] if len(alts) == 1 else None)
+            if target:
+                dist = dict(alts)[target]
+                dwg.specs.setdefault(target, []).append(associate.SpecLink(
+                    q, s.fragment, "relinked-by-field", dist, s.distance and dist / s.distance))
+            else:
+                F(Finding("AMBIGUOUS_LABEL", WARNING, LOW, alts[0][0], f"'{s.fragment.text}' is nearest to {tag}, "
+                          f"which has no {q.kind}; {' and '.join(t for t, _ in alts)} could carry it and none "
+                          f"matches", drawing=s.fragment.text, x=s.fragment.x, y=s.fragment.y,
+                          page=s.fragment.page, related=[t for t, _ in alts[1:]] + [tag]))
+        dwg.specs[tag] = keep
+
     for frag, qs in dwg.orphans:
         F(Finding("ORPHAN_LABEL", INFO, MEDIUM, "", f"'{frag.text}' is not near any tag; not compared",
                   drawing=frag.text, x=frag.x, y=frag.y, page=frag.page))
@@ -203,7 +237,7 @@ def check(drawing_path: str | Path, list_path: str | Path) -> Report:
         "values_compared": n_compared, "agreements": len(rep.agreements),
         "ambiguous_labels": len(dwg.ambiguous), "list_problems": lst.problems,
         "links": {k: sum(1 for ls in dwg.specs.values() for s in ls if s.link == k)
-                  for k in ("attribute", "inline", "proximity", "resolved-by-value")},
+                  for k in ("attribute", "inline", "proximity", "resolved-by-value", "relinked-by-field")},
     }
     order = {ERROR: 0, WARNING: 1, INFO: 2}
     rep.findings.sort(key=lambda f: (order[f.severity], f.tag, f.kind))

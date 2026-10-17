@@ -11,6 +11,7 @@ decimal commas, tag spelling) and must not be flagged.
 
     python synth/generate.py --set dev  --out data/dev      # seeds 0-19, the development set
     python synth/generate.py --set test --out data/test     # seeds 1000-1039, held-out (see PREREGISTRATION.md)
+    python synth/generate.py --set confirm --out data/confirm  # seeds 2000-2039, fresh set for the v2 amendment
 """
 from __future__ import annotations
 
@@ -505,15 +506,16 @@ def make(seed: int, out: Path, test: bool) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--set", choices=["dev", "test"], required=True)
+    ap.add_argument("--set", choices=["dev", "test", "confirm"], required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    seeds = range(0, 20) if a.set == "dev" else range(1000, 1040)
+    # confirm: a fresh held-out set with the test-set variants, generated only to check the v2 amendment
+    seeds = {"dev": range(0, 20), "test": range(1000, 1040), "confirm": range(2000, 2040)}[a.set]
     tot = {"faults": 0, "values": 0}
     for s in seeds:
-        t = make(s, out, a.set == "test")
+        t = make(s, out, a.set != "dev")
         tot["faults"] += len(t["faults"])
         tot["values"] += t["values_on_drawing"]
     print(f"{a.set}: {len(seeds)} drawings, {tot['faults']} planted faults, {tot['values']} values on drawings")
