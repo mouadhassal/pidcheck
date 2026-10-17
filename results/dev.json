@@ -1,0 +1,265 @@
+{
+ "folder": "data\\dev",
+ "formats": {
+  "dxf": {
+   "drawings": 20,
+   "planted_faults": 139,
+   "caught": 139,
+   "caught_or_review": 139,
+   "recall": 1.0,
+   "recall_incl_review": 1.0,
+   "false_alarms": 0,
+   "false_alarms_per_drawing": 0.0,
+   "false_alarm_errors": 0,
+   "high_confidence_errors": 95,
+   "high_confidence_precision": 1.0,
+   "agreements": 1173,
+   "agreements_across_units": 773,
+   "seconds_per_drawing": 0.06701320000001942,
+   "per_type": {
+    "confusable": {
+     "planted": 18,
+     "caught": 18,
+     "caught_or_review": 18
+    },
+    "duplicate": {
+     "planted": 11,
+     "caught": 11,
+     "caught_or_review": 11
+    },
+    "extra": {
+     "planted": 9,
+     "caught": 9,
+     "caught_or_review": 9
+    },
+    "list_duplicate": {
+     "planted": 3,
+     "caught": 3,
+     "caught_or_review": 3
+    },
+    "missing": {
+     "planted": 35,
+     "caught": 35,
+     "caught_or_review": 35
+    },
+    "rating_changed": {
+     "planted": 8,
+     "caught": 8,
+     "caught_or_review": 8
+    },
+    "size_changed": {
+     "planted": 13,
+     "caught": 13,
+     "caught_or_review": 13
+    },
+    "transposed": {
+     "planted": 15,
+     "caught": 15,
+     "caught_or_review": 15
+    },
+    "unit_slip": {
+     "planted": 1,
+     "caught": 1,
+     "caught_or_review": 1
+    },
+    "value_changed": {
+     "planted": 26,
+     "caught": 26,
+     "caught_or_review": 26
+    }
+   },
+   "false_alarm_list": []
+  },
+  "pdf": {
+   "drawings": 20,
+   "planted_faults": 139,
+   "caught": 139,
+   "caught_or_review": 139,
+   "recall": 1.0,
+   "recall_incl_review": 1.0,
+   "false_alarms": 0,
+   "false_alarms_per_drawing": 0.0,
+   "false_alarm_errors": 0,
+   "high_confidence_errors": 95,
+   "high_confidence_precision": 1.0,
+   "agreements": 1173,
+   "agreements_across_units": 773,
+   "seconds_per_drawing": 0.01780153000000837,
+   "per_type": {
+    "confusable": {
+     "planted": 18,
+     "caught": 18,
+     "caught_or_review": 18
+    },
+    "duplicate": {
+     "planted": 11,
+     "caught": 11,
+     "caught_or_review": 11
+    },
+    "extra": {
+     "planted": 9,
+     "caught": 9,
+     "caught_or_review": 9
+    },
+    "list_duplicate": {
+     "planted": 3,
+     "caught": 3,
+     "caught_or_review": 3
+    },
+    "missing": {
+     "planted": 35,
+     "caught": 35,
+     "caught_or_review": 35
+    },
+    "rating_changed": {
+     "planted": 8,
+     "caught": 8,
+     "caught_or_review": 8
+    },
+    "size_changed": {
+     "planted": 13,
+     "caught": 13,
+     "caught_or_review": 13
+    },
+    "transposed": {
+     "planted": 15,
+     "caught": 15,
+     "caught_or_review": 15
+    },
+    "unit_slip": {
+     "planted": 1,
+     "caught": 1,
+     "caught_or_review": 1
+    },
+    "value_changed": {
+     "planted": 26,
+     "caught": 26,
+     "caught_or_review": 26
+    }
+   },
+   "false_alarm_list": []
+  }
+ },
+ "by_drawing": [
+  {
+   "name": "pid_0000",
+   "faults": 5,
+   "errors": 4,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0001",
+   "faults": 6,
+   "errors": 6,
+   "warnings": 0
+  },
+  {
+   "name": "pid_0002",
+   "faults": 7,
+   "errors": 5,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0003",
+   "faults": 9,
+   "errors": 10,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0004",
+   "faults": 7,
+   "errors": 5,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0005",
+   "faults": 8,
+   "errors": 8,
+   "warnings": 0
+  },
+  {
+   "name": "pid_0006",
+   "faults": 7,
+   "errors": 4,
+   "warnings": 3
+  },
+  {
+   "name": "pid_0007",
+   "faults": 5,
+   "errors": 4,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0008",
+   "faults": 6,
+   "errors": 5,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0009",
+   "faults": 8,
+   "errors": 6,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0010",
+   "faults": 4,
+   "errors": 3,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0011",
+   "faults": 7,
+   "errors": 4,
+   "warnings": 3
+  },
+  {
+   "name": "pid_0012",
+   "faults": 7,
+   "errors": 6,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0013",
+   "faults": 7,
+   "errors": 6,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0014",
+   "faults": 7,
+   "errors": 6,
+   "warnings": 1
+  },
+  {
+   "name": "pid_0015",
+   "faults": 9,
+   "errors": 7,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0016",
+   "faults": 7,
+   "errors": 5,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0017",
+   "faults": 7,
+   "errors": 4,
+   "warnings": 3
+  },
+  {
+   "name": "pid_0018",
+   "faults": 9,
+   "errors": 7,
+   "warnings": 2
+  },
+  {
+   "name": "pid_0019",
+   "faults": 7,
+   "errors": 3,
+   "warnings": 4
+  }
+ ]
+}
