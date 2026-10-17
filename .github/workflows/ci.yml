@@ -1,0 +1,25 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: The example finds its 9 planted faults (exit code 1 = errors found)
+        run: |
+          set +e
+          pidcheck examples/example.dxf examples/example_equipment.xlsx --out report
+          test $? -eq 1
+      - name: Development benchmark (20 drawings, DXF and PDF)
+        run: |
+          python synth/generate.py --set dev --out data/dev
+          python bench/run.py data/dev --out results/ci_dev.json
+          python -c "import json; r=json.load(open('results/ci_dev.json'))['formats']; assert all(f['false_alarms']==0 and f['recall']>=0.99 for f in r.values()), r"

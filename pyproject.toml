@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pidcheck"
+version = "0.3.0"
+description = "Check a P&ID (DXF or vector PDF) against its equipment list or DEXPI data, with code making every decision."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Mouadh Abderrahmane Assal" }]
+dependencies = ["ezdxf>=1.1", "pymupdf>=1.23", "openpyxl>=3.1", "lxml>=4.9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+pidcheck = "pidcheck.__main__:main"
+
+[tool.setuptools]
+packages = ["pidcheck"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

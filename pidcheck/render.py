@@ -19,7 +19,8 @@ class Mark:
     y: float
     color: tuple       # RGB 0..1
     label: str = ""
-    radius: float = 9.0  # in drawing text heights... converted below
+    chars: int = 6         # length of the flagged text, to size the highlight around it
+    height: float = 2.5    # text height in drawing units
 
 
 class _Map:
@@ -123,10 +124,12 @@ def render(dxf_path: str | Path, pdf_path: str | Path | None = None, marks: list
                 _text(page, m, ln, type(ins)(ins.x, y, 0), type(ins)(ins.x, y, 0), h, col, valign, 0.0)
     for mk in marks or []:
         cx, cy = m(mk.x, mk.y)
-        r = mk.radius
-        page.draw_circle((cx, cy), r, color=mk.color, width=1.8)
+        hw = 0.5 * 0.6 * mk.chars * mk.height * m.s + 4     # half width: estimated text width plus padding
+        hh = 0.5 * mk.height * m.s + 3.5
+        rect = (cx - hw, cy - hh, cx + hw, cy + hh)
+        page.draw_oval(rect, color=mk.color, fill=mk.color, width=1.4, fill_opacity=0.13, stroke_opacity=0.9)
         if mk.label:
-            page.insert_text((cx + r + 2, cy - r), mk.label, fontsize=6.5, color=mk.color, fontname="helv")
+            page.insert_text((cx + hw + 1.5, cy - hh + 2), mk.label, fontsize=6.5, color=mk.color, fontname="hebo")
     if pdf_path:
         pdf.save(pdf_path)
     if png_path:

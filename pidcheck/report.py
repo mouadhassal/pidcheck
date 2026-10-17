@@ -21,7 +21,7 @@ def annotated_png(rep: Report, out_png: Path, dpi: int = 130) -> Path | None:
     if src.suffix.lower() == ".dxf":
         from .render import Mark, render
         render(src, png_path=out_png, dpi=dpi,
-               marks=[Mark(f.x, f.y, COLOURS[f.severity], f"#{i}") for i, f in marks])
+               marks=[Mark(f.x, f.y, COLOURS[f.severity], f"#{i}", len(f.drawing or f.tag) or 6) for i, f in marks])
         return out_png
     if src.suffix.lower() == ".pdf":
         import fitz
@@ -32,8 +32,10 @@ def annotated_png(rep: Report, out_png: Path, dpi: int = 130) -> Path | None:
                 if f.page != 0:
                     continue
                 c = (f.x, ph - f.y)
-                page.draw_circle(c, 9, color=COLOURS[f.severity], width=1.8)
-                page.insert_text((c[0] + 11, c[1] - 9), f"#{i}", fontsize=6.5, color=COLOURS[f.severity])
+                hw, hh = 0.3 * 7 * len(f.drawing or f.tag or "xxxxxx") + 4, 8
+                page.draw_oval((c[0] - hw, c[1] - hh, c[0] + hw, c[1] + hh), color=COLOURS[f.severity],
+                               fill=COLOURS[f.severity], width=1.4, fill_opacity=0.13)
+                page.insert_text((c[0] + hw + 1.5, c[1] - hh + 2), f"#{i}", fontsize=6.5, color=COLOURS[f.severity])
             page.get_pixmap(dpi=dpi).save(out_png)
         return out_png
     return None

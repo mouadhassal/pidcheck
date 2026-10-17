@@ -15,7 +15,7 @@
    "high_confidence_precision": 1.0,
    "agreements": 2386,
    "agreements_across_units": 1451,
-   "seconds_per_drawing": 0.050709682499962126,
+   "seconds_per_drawing": 0.05425484999998389,
    "per_type": {
     "confusable": {
      "planted": 31,
@@ -84,7 +84,7 @@
    "high_confidence_precision": 1.0,
    "agreements": 2394,
    "agreements_across_units": 1451,
-   "seconds_per_drawing": 0.016229349999980512,
+   "seconds_per_drawing": 0.017180562500016094,
    "per_type": {
     "confusable": {
      "planted": 31,

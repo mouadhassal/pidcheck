@@ -1,0 +1,67 @@
+{
+ "name": "pid_3046",
+ "seed": 3046,
+ "set": "dev",
+ "list_units": "metric",
+ "drawing_units": "us",
+ "decimal_comma": false,
+ "crowded": false,
+ "variant": {
+  "mtext_attach": 1
+ },
+ "faults": [
+  {
+   "type": "value_changed",
+   "tag": "PSV-241",
+   "field": "pressure",
+   "drawing": "275 psig"
+  },
+  {
+   "type": "confusable",
+   "tag": "E-101",
+   "drawing": "E-I01"
+  },
+  {
+   "type": "missing",
+   "tag": "P-102"
+  },
+  {
+   "type": "value_changed",
+   "tag": "P-201",
+   "field": "flow",
+   "drawing": "23.4 GPM"
+  },
+  {
+   "type": "unit_slip",
+   "tag": "V-101",
+   "field": "volume",
+   "drawing": "96.4 gal"
+  },
+  {
+   "type": "size_changed",
+   "tag": "CV-111",
+   "field": "size",
+   "drawing": "3 IN"
+  },
+  {
+   "type": "missing",
+   "tag": "P-101"
+  },
+  {
+   "type": "confusable",
+   "tag": "PSV-142",
+   "drawing": "PSV-I42"
+  },
+  {
+   "type": "duplicate",
+   "tag": "HV-111"
+  }
+ ],
+ "traps": {
+  "tag_spelling": 1,
+  "unit_system_conversions": 49
+ },
+ "items_on_drawing": 28,
+ "items_in_list": 29,
+ "values_on_drawing": 47
+}
